@@ -1,15 +1,10 @@
 package chess;
 
-import chess.boardgame.Position;
+import chess.chess.ChessMatch;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
+public class App {
     public static void main( String[] args ) {
-        Position position = new Position(3, 5);
-        System.out.println(position);
+        ChessMatch chessMatch = new ChessMatch();
+        UI.printBoard(chessMatch.getPieces());
     }
 }

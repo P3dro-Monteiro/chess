@@ -3,7 +3,7 @@
 class Position {
     - row : int
     - column : int
-
+    
     + setRow(row): void
     + setColumn(Column): void
     + getRow(row): int

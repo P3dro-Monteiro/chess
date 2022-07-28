@@ -2,20 +2,19 @@ package chess.boardgame;
 
 public class Board {
     
-    private int CHESS_BOARD_WIDTH = 8;
-    private int CHESS_BOARD_LENGTH = 8;
-
     private int rows;
     private int columns;
     private Piece[][] pieces;
 
-    public Board() {
-
-        this.rows = CHESS_BOARD_WIDTH;
-        this.columns = CHESS_BOARD_LENGTH;
-
-        pieces = new Piece[this.rows][this.columns];
+    public Board(int rows, int columns) { 
+        this.rows = rows; 
+        this.columns = columns;
+        pieces = new Piece[rows][columns];
     }
+
+    public Piece piece(int row, int column) { return pieces[row][column]; }
+
+    public Piece piece(Position position) { return pieces[position.getRow()][position.getColumn()]; }
 
     public int getRows() { return rows; }
 

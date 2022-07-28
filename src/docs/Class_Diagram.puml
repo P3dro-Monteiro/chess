@@ -1,0 +1,10 @@
+@startuml
+
+class Position {
+    - row
+    - column
+    + setPosition(row, column): void
+}
+
+
+@enduml

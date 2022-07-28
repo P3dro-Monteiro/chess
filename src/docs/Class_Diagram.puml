@@ -1,10 +1,29 @@
 @startuml
 
 class Position {
-    - row
-    - column
-    + setPosition(row, column): void
+    - row : int
+    - column : int
+
+    + setRow(row): void
+    + setColumn(Column): void
+    + getRow(row): int
+    + getColumn(Column): int
 }
+
+class Piece {
+    + possibleMove(): Piece [][]
+    + possibleMove(position : Position): boolean
+    + isThereAnyPossibleMove(): boolean
+}
+
+class Board {
+    - rows : int
+    - columns : int
+}
+
+Piece --* "1" Position
+Piece "*" -- "1" Board
+
 
 
 @enduml

@@ -1,7 +1,12 @@
 package chess;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import chess.chess.ChessPiece;
+import chess.chess.ChessPosition;
 import chess.chess.Color;
+import chess.errorhandling.ExceptionMessages;
 
 public class UI {
 
@@ -38,7 +43,22 @@ public class UI {
             System.out.println();
         }
 
-        System.out.print("  a b c d e f g h");
+        System.out.println("  a b c d e f g h");
+    }
+
+    public static ChessPosition readChessPosition(Scanner scanner) {
+        
+        try {
+
+        String boardCoordinate = scanner.nextLine();
+        char column = boardCoordinate.charAt(0);
+        int row = Integer.parseInt(boardCoordinate.substring(1));
+
+        return new ChessPosition(column, row);
+
+        }catch (RuntimeException exception){
+            throw new InputMismatchException(ExceptionMessages.OUT_OF_BOUNDS);
+        }
     }
 
     private static void printPiece(ChessPiece piece) {

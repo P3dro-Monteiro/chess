@@ -49,11 +49,24 @@ public class Board {
         piece.position = position;
     }
 
-    /* public Piece removePiece(Position position) {
+    public Piece removePiece(Position position) {
+        
         if(!positionExists(position)) {
-            throw new Bo
+            throw new BoardException(ExceptionMessages.OUT_OF_BOUNDS);
         }
-    } */
+
+        if(piece(position) == null) {
+            return null;
+        }
+
+        Piece pieceToPickUp = piece(position);
+
+        pieceToPickUp.position = null;
+
+        pieces[position.getRow()][position.getColumn()] = null;
+
+        return pieceToPickUp;
+    }
 
     public boolean positionExists(Position position) {
         return positionExists(position.getRow(), position.getColumn());

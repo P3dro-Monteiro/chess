@@ -1,8 +1,12 @@
 package chess.chess;
 
 import chess.boardgame.Board;
+import chess.boardgame.Piece;
+import chess.boardgame.Position;
 import chess.chess.chesspieces.King;
 import chess.chess.chesspieces.Rook;
+import chess.errorhandling.ChessException;
+import chess.errorhandling.ExceptionMessages;
 
 public class ChessMatch {
     
@@ -17,10 +21,10 @@ public class ChessMatch {
     }
 
     public ChessPiece[][] getPieces() {
-        ChessPiece[][] pieces = new ChessPiece[board.getRows()][board.getColumns()];
+        ChessPiece[][] pieces = new ChessPiece[this.board.getRows()][this.board.getColumns()];
 
-        for (int i = 0; i < board.getRows(); i++) {
-            for (int j = 0; j < board.getColumns(); j++) {
+        for (int i = 0; i < this.board.getRows(); i++) {
+            for (int j = 0; j < this.board.getColumns(); j++) {
                 pieces[i][j] = (ChessPiece) board.piece(i, j);
             }
         }
@@ -28,8 +32,38 @@ public class ChessMatch {
         return pieces;
     }
 
+    public ChessPiece performChessMove(ChessPosition originalPosition, ChessPosition newPosition) {
+
+        Position from = originalPosition.toPosition();
+        Position to = newPosition.toPosition();
+
+        validateOriginalPosition(from);
+
+        Piece pickedUpPiece = makeMove(from, to);
+        
+        return (ChessPiece)pickedUpPiece;
+    }
+
+    private void validateOriginalPosition(Position position) {
+        
+        if(!this.board.thereIsAPiece(position)) {
+            throw new ChessException(ExceptionMessages.NO_PIECE_IN_POSITION);
+        }
+    }
+
+    private Piece makeMove(Position from, Position to) {
+
+       Piece piece = this.board.removePiece(from);
+       Piece pickedUpPiece = this.board.removePiece(to);
+
+       this.board.placePiece(piece, to);
+
+       return pickedUpPiece;
+    }
+
     private void placeNewPiece(char column, int row, ChessPiece chessPiece) {
-        board.placePiece(chessPiece, new ChessPosition(column, row).toPosition()); 
+        
+        this.board.placePiece(chessPiece, new ChessPosition(column, row).toPosition()); 
     }
 
     private void initialSetup() {
@@ -62,7 +96,7 @@ public class ChessMatch {
         /* placeNewPiece('a', 7, new Pawn(board, Color.BLACK, this));
         placeNewPiece('b', 7, new Pawn(board, Color.BLACK, this));
         placeNewPiece('c', 7, new Pawn(board, Color.BLACK, this));
-        placeNewPiece('d', 7, new Pawn(board, Color.BLACK, this));
+        placeNewPiece('d', 7, new Pawn(board, Color.BL ACK, this));
         placeNewPiece('e', 7, new Pawn(board, Color.BLACK, this));
         placeNewPiece('f', 7, new Pawn(board, Color.BLACK, this));
         placeNewPiece('g', 7, new Pawn(board, Color.BLACK, this));

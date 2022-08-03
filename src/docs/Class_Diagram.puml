@@ -21,9 +21,32 @@ class Board {
     - columns : int
 }
 
+class ChessMatch {}
+
+class ChessPiece {}
+
+class King {}
+class Queen {}
+class Bishop {}
+class Knight {}
+class Rook {}
+class Pawn {}
+
+enum Color {}
+
+class ChessException {}
+
 Piece --* "1" Position
 Piece "*" -- "1" Board
 
+ChessPiece --|> Piece
+
+King --|> ChessPiece
+Queen --|> ChessPiece
+Bishop --|> ChessPiece
+Knight --|> ChessPiece
+Rook --|> ChessPiece
+Pawn --|> ChessPiece
 
 
 @enduml

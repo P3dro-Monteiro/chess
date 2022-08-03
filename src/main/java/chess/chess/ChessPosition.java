@@ -1,6 +1,8 @@
 package chess.chess;
 
 import chess.boardgame.Position;
+import chess.errorhandling.ChessException;
+import chess.errorhandling.ExceptionMessages;
 
 public class ChessPosition {
     
@@ -10,7 +12,7 @@ public class ChessPosition {
     public ChessPosition(char column, int row) {
 
         if (column < 'a' || column > 'h' || row < 1 || row > 8) {
-            throw new ChessException("Position Out of Bounds");
+            throw new ChessException(ExceptionMessages.OUT_OF_BOUNDS);
         }
 
         this.row = row;

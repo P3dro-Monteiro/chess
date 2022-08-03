@@ -1,5 +1,8 @@
 package chess.boardgame;
 
+import chess.errorhandling.BoardException;
+import chess.errorhandling.ExceptionMessages;
+
 public class Board {
     
     private int rows;
@@ -9,7 +12,7 @@ public class Board {
     public Board(int rows, int columns) { 
 
         if (rows < 1 || columns < 1) {
-            throw new BoardException("Error Creating Board: There Must Be At Least 1 Row and 1 Column");
+            throw new BoardException(ExceptionMessages.ERROR_CREATING_BOARD);
         }
 
         this.rows = rows; 
@@ -20,7 +23,7 @@ public class Board {
     public Piece piece(int row, int column) { 
 
         if (!positionExists(row, column)) {
-            throw new BoardException("Position Out of Bounds");
+            throw new BoardException(ExceptionMessages.OUT_OF_BOUNDS);
         }
 
         return pieces[row][column]; 
@@ -29,7 +32,7 @@ public class Board {
     public Piece piece(Position position) { 
 
         if (!positionExists(position)) {
-            throw new BoardException("Position Out of Bounds");
+            throw new BoardException(ExceptionMessages.OUT_OF_BOUNDS);
         }
 
         return pieces[position.getRow()][position.getColumn()]; 
@@ -38,13 +41,19 @@ public class Board {
     public void placePiece(Piece piece, Position position) {
 
         if (thereIsAPiece(position)) {
-            throw new BoardException("There is Already an Pice on " + position);
+            throw new BoardException(ExceptionMessages.POSITION_OCCUPIED + position);
         }
 
         pieces[position.getRow()][position.getColumn()] = piece;
 
         piece.position = position;
     }
+
+    /* public Piece removePiece(Position position) {
+        if(!positionExists(position)) {
+            throw new Bo
+        }
+    } */
 
     public boolean positionExists(Position position) {
         return positionExists(position.getRow(), position.getColumn());
@@ -61,7 +70,7 @@ public class Board {
     public boolean thereIsAPiece(Position position) {
 
         if (!positionExists(position)) {
-            throw new BoardException("Position Out of Bounds");
+            throw new BoardException(ExceptionMessages.OUT_OF_BOUNDS);
         }
 
         return this.piece(position) != null;

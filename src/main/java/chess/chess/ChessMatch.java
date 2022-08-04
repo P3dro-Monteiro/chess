@@ -49,6 +49,10 @@ public class ChessMatch {
         if(!this.board.thereIsAPiece(position)) {
             throw new ChessException(ExceptionMessages.NO_PIECE_IN_POSITION);
         }
+
+        if (!board.piece(position).isThereAnyPossibleMove()) {
+            throw new ChessException(ExceptionMessages.NO_POSSIBLE_MOVES);
+        }
     }
 
     private Piece makeMove(Position from, Position to) {

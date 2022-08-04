@@ -1,6 +1,6 @@
 package chess.boardgame;
 
-public class Piece {
+public abstract class Piece {
     
     protected Position position;
     private Board board;
@@ -8,5 +8,26 @@ public class Piece {
     public Piece(Board board) { this.board = board; }
 
     protected Board getBoard() { return board; }
+
+    public abstract boolean[][] possibleMoves();
+
+    public boolean possibleMove(Position position) { return possibleMoves()[position.getRow()][position.getColumn()]; }
+
+    public boolean isThereAnyPossibleMove() {
+
+        boolean[][] movesMatrix = possibleMoves();
+
+        for (int i = 0; i < movesMatrix.length; i++) {
+            for (int j = 0; j < movesMatrix.length; j++) {
+                
+                if(movesMatrix[i][j]) {
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
+    }
 
 }

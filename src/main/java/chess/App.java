@@ -5,7 +5,6 @@ import java.util.Scanner;
 import chess.chess.ChessMatch;
 import chess.chess.ChessPiece;
 import chess.chess.ChessPosition;
-import chess.errorhandling.ChessException;
 
 public class App {
     public static void main( String[] args ) {
@@ -38,6 +37,5 @@ public class App {
                 scanner.nextLine();
             }
         }
-        
     }
 }

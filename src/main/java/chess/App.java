@@ -5,6 +5,7 @@ import java.util.Scanner;
 import chess.chess.ChessMatch;
 import chess.chess.ChessPiece;
 import chess.chess.ChessPosition;
+import chess.errorhandling.ChessException;
 
 public class App {
     public static void main( String[] args ) {
@@ -14,19 +15,28 @@ public class App {
 
         while(true) {
             
-            UI.printBoard(chessMatch.getPieces());
+            try {
 
-            System.out.println();
-            System.out.println("Source: ");
+                UI.clearScreen();
+                UI.printBoard(chessMatch.getPieces());
 
-            ChessPosition originalPosition = UI.readChessPosition(scanner);
+                System.out.println();
+                System.out.println("Source: ");
 
-            System.out.println();
-            System.out.println("Target: ");
+                ChessPosition originalPosition = UI.readChessPosition(scanner);
 
-            ChessPosition newPosition = UI.readChessPosition(scanner);
+                System.out.println();
+                System.out.println("Target: ");
 
-            ChessPiece pickedUpPiece = chessMatch.performChessMove(originalPosition, newPosition);
+                ChessPosition newPosition = UI.readChessPosition(scanner);
+
+                ChessPiece pickedUpPiece = chessMatch.performChessMove(originalPosition, newPosition);
+
+            } catch(RuntimeException exception) {
+
+                System.out.println(exception.getMessage());
+                scanner.nextLine();
+            }
         }
         
     }

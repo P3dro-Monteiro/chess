@@ -71,11 +71,16 @@ public class UI {
         printCapturedPieces(capturedPieces);
         System.out.println();
         System.out.println("Turn: " + chessMatch.getTurn());
-        System.out.println(chessMatch.getCurrentPlayer() + "S turn.");
 
-        if (chessMatch.getCheck()) {
-            System.out.println("YOU ARE CHECKED!");
+        if (!chessMatch.getCheckMate()) {
+            System.out.println(chessMatch.getCurrentPlayer() + "S turn.");    
+
+            if (chessMatch.getCheck()) { System.out.println("YOU ARE CHECKED!"); }
+        } else {
+            System.out.println("CHECKMATE!");
+            System.out.println("Winner: " + chessMatch.getCurrentPlayer() + "S");
         }
+   
     }
 
     // https://stackoverflow.com/questions/2979383/java-clear-the-console

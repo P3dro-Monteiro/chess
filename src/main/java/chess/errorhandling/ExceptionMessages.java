@@ -8,6 +8,6 @@ public class ExceptionMessages {
     public static final String NO_PIECE_IN_POSITION = "There is no piece in that position!";
     public static final String NO_POSSIBLE_MOVES = "There is no possible moves for that piece!";
     public static final String INVALID_MOVE = "Invalid Move!";
-
+    public static final String PIECE_DOES_NOT_BELONG_TO_PLAYER = "Chosen piece is not yours!";
 
 }

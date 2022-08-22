@@ -3,6 +3,7 @@ package chess;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.chess.ChessMatch;
 import chess.chess.ChessPiece;
 import chess.chess.ChessPosition;
 import chess.chess.Color;
@@ -59,6 +60,13 @@ public class UI {
         }
 
         System.out.println("  a b c d e f g h");
+    }
+
+    public static void printMatch(ChessMatch chessMatch) {
+        printBoard(chessMatch.getPieces());
+        System.out.println();
+        System.out.println("Turn: " + chessMatch.getTurn());
+        System.out.println(chessMatch.getCurrentPlayer() + " turn.");
     }
 
     // https://stackoverflow.com/questions/2979383/java-clear-the-console

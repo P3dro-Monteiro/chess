@@ -11,14 +11,22 @@ import chess.errorhandling.ExceptionMessages;
 public class ChessMatch {
     
     private Board board;
-    
+    private int turn;
+    private Color currentPlayer;
+
     private final int CHESS_BOARD_WIDTH = 8;
 
     public ChessMatch() { 
-        this.board = new Board(CHESS_BOARD_WIDTH, CHESS_BOARD_WIDTH); 
+        this.board = new Board(CHESS_BOARD_WIDTH, CHESS_BOARD_WIDTH);
+        this.turn = 1;
+        this.currentPlayer = Color.WHITE;
 
         initialSetup();
     }
+
+    public int getTurn() { return this.turn; }
+
+    public Color getCurrentPlayer() { return this.currentPlayer; }
 
     public ChessPiece[][] getPieces() {
         ChessPiece[][] pieces = new ChessPiece[this.board.getRows()][this.board.getColumns()];
@@ -47,6 +55,8 @@ public class ChessMatch {
 
         Piece pickedUpPiece = makeMove(from, to);
         
+        nextTurn();
+
         return (ChessPiece)pickedUpPiece;
     }
 
@@ -54,6 +64,10 @@ public class ChessMatch {
         
         if(!this.board.thereIsAPiece(position)) {
             throw new ChessException(ExceptionMessages.NO_PIECE_IN_POSITION);
+        }
+
+        if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
+            throw new ChessException(ExceptionMessages.PIECE_DOES_NOT_BELONG_TO_PLAYER);
         }
 
         if (!this.board.piece(position).isThereAnyPossibleMove()) {
@@ -81,6 +95,11 @@ public class ChessMatch {
     private void placeNewPiece(char column, int row, ChessPiece chessPiece) {
         
         this.board.placePiece(chessPiece, new ChessPosition(column, row).toPosition()); 
+    }
+
+    private void nextTurn() {
+        turn++;
+        currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
     }
 
     private void initialSetup() {

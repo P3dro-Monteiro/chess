@@ -72,6 +72,10 @@ public class UI {
         System.out.println();
         System.out.println("Turn: " + chessMatch.getTurn());
         System.out.println(chessMatch.getCurrentPlayer() + "S turn.");
+
+        if (chessMatch.getCheck()) {
+            System.out.println("YOU ARE CHECKED!");
+        }
     }
 
     // https://stackoverflow.com/questions/2979383/java-clear-the-console

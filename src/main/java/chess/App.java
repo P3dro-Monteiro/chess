@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import chess.chess.ChessMatch;
@@ -11,13 +13,14 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
         ChessMatch chessMatch = new ChessMatch();
+        List<ChessPiece> capturedPieces = new ArrayList<>();
 
         while(true) {
             
             try {
 
                 UI.clearScreen();
-                UI.printMatch(chessMatch);
+                UI.printMatch(chessMatch, capturedPieces);
 
                 System.out.println();
                 System.out.println("Source: ");
@@ -35,6 +38,8 @@ public class App {
                 ChessPosition newPosition = UI.readChessPosition(scanner);
 
                 ChessPiece pickedUpPiece = chessMatch.performChessMove(originalPosition, newPosition);
+
+                if (pickedUpPiece != null) { capturedPieces.add(pickedUpPiece); }
 
             } catch(RuntimeException exception) {
 

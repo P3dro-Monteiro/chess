@@ -20,6 +20,10 @@ public class Board {
         pieces = new Piece[rows][columns];
     }
 
+    public int getRows() { return rows; }
+
+    public int getColumns() { return columns; }
+
     public Piece piece(int row, int column) { 
 
         if (!positionExists(row, column)) {
@@ -88,8 +92,4 @@ public class Board {
 
         return this.piece(position) != null;
     }
-
-    public int getRows() { return rows; }
-
-    public int getColumns() { return columns; }
 }

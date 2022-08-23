@@ -68,6 +68,8 @@ public class UI {
     public static void printMatch(ChessMatch chessMatch, List<ChessPiece> capturedPieces) {
         printBoard(chessMatch.getPieces());
         System.out.println();
+        printLabel();
+        System.out.println();
         printCapturedPieces(capturedPieces);
         System.out.println();
         System.out.println("Turn: " + chessMatch.getTurn());
@@ -143,6 +145,11 @@ public class UI {
         System.out.print(ANSI_YELLOW);
         System.out.println(Arrays.toString(blackCapturedPieces.toArray()));
         System.out.print(ANSI_RESET);
-    }   
-
+    }
+    
+    private static void printLabel() { 
+        System.out.println("R - Rook; N - Knight;"); 
+        System.out.println("B - Bishop; Q - Queen;"); 
+        System.out.println("K - King; P - Pawn"); 
+    }
 }

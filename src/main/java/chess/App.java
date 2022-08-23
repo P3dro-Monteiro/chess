@@ -23,7 +23,7 @@ public class App {
                 UI.printMatch(chessMatch, capturedPieces);
 
                 System.out.println();
-                System.out.print("Source: ");
+                System.out.print("Select a Piece: ");
 
                 ChessPosition originalPosition = UI.readChessPosition(scanner);
 
@@ -33,7 +33,7 @@ public class App {
                 UI.printBoard(chessMatch.getPieces(), possibleMoves);
 
                 System.out.println();
-                System.out.print("Target: ");
+                System.out.print("Destination: ");
 
                 ChessPosition newPosition = UI.readChessPosition(scanner);
 
@@ -43,7 +43,13 @@ public class App {
 
                 if (chessMatch.getPromoted() != null) {
                     System.out.print("Enter piece for promotion (B/N/R/Q): ");
-                    String pieceType = scanner.nextLine();
+                    String pieceType = scanner.nextLine().toUpperCase();
+
+                    while (!pieceType.equals("B") && !pieceType.equals("N") && !pieceType.equals("R") && !pieceType.equals("Q")) {
+                        System.out.print("Invalid value! Enter piece for promotion (B/N/R/Q): ");
+                        pieceType = scanner.nextLine().toUpperCase();
+                    }
+
                     chessMatch.replacePromotedPiece(pieceType);
                 }
 

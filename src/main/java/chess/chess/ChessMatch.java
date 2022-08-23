@@ -1,6 +1,5 @@
 package chess.chess;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -146,7 +145,7 @@ public class ChessMatch {
             throw new IllegalStateException(ExceptionMessages.NO_PIECE_TO_PROMOTE);
         }
         if (!pieceType.equals("B") && !pieceType.equals("N") && !pieceType.equals("R") && !pieceType.equals("Q")) {
-            throw new InvalidParameterException(ExceptionMessages.INVALID_TYPE_PROMOTION);
+            return promoted;
         }
 
         Position auxiliarPosition = promoted.getChessPosition().toPosition();

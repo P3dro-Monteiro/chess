@@ -23,7 +23,7 @@ public class App {
                 UI.printMatch(chessMatch, capturedPieces);
 
                 System.out.println();
-                System.out.println("Source: ");
+                System.out.print("Source: ");
 
                 ChessPosition originalPosition = UI.readChessPosition(scanner);
 
@@ -33,13 +33,19 @@ public class App {
                 UI.printBoard(chessMatch.getPieces(), possibleMoves);
 
                 System.out.println();
-                System.out.println("Target: ");
+                System.out.print("Target: ");
 
                 ChessPosition newPosition = UI.readChessPosition(scanner);
 
                 ChessPiece pickedUpPiece = chessMatch.performChessMove(originalPosition, newPosition);
 
                 if (pickedUpPiece != null) { capturedPieces.add(pickedUpPiece); }
+
+                if (chessMatch.getPromoted() != null) {
+                    System.out.print("Enter piece for promotion (B/N/R/Q): ");
+                    String pieceType = scanner.nextLine();
+                    chessMatch.replacePromotedPiece(pieceType);
+                }
 
             } catch(RuntimeException exception) {
 

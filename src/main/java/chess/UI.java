@@ -80,7 +80,7 @@ public class UI {
             System.out.println("CHECKMATE!");
             System.out.println("Winner: " + chessMatch.getCurrentPlayer() + "S");
         }
-   
+
     }
 
     // https://stackoverflow.com/questions/2979383/java-clear-the-console
@@ -133,12 +133,13 @@ public class UI {
         .filter(piece -> piece.getColor() == Color.BLACK).collect(Collectors.toList());
 
         System.out.println("Captured Pieces:");
-        System.out.println("White:");
+        System.out.print("White:");
         System.out.print(ANSI_WHITE);
         System.out.println(Arrays.toString(whiteCapturedPieces.toArray()));
         System.out.print(ANSI_RESET);
 
-        System.out.println("Black:");
+        System.out.print(ANSI_YELLOW);
+        System.out.print("Black:");
         System.out.print(ANSI_YELLOW);
         System.out.println(Arrays.toString(blackCapturedPieces.toArray()));
         System.out.print(ANSI_RESET);

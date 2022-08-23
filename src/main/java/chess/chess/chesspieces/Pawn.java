@@ -7,9 +7,7 @@ import chess.chess.Color;
 
 public class Pawn extends ChessPiece {
 
-    public Pawn(Board board, Color color) {
-        super(board, color);
-    }
+    public Pawn(Board board, Color color) { super(board, color); }
 
     @Override
     public String toString() { return "P"; }
@@ -94,9 +92,7 @@ public class Pawn extends ChessPiece {
                 booleanMatrix[auxiliarPosition.getRow()][auxiliarPosition.getColumn()] = true;
             }
         }
-
         
-
         return booleanMatrix;
     } 
 }
